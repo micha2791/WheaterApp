@@ -1,14 +1,14 @@
 function initPage() {
-    const cityEl = document.getElementById("enter-city");
-    const searchEl = document.getElementById("search-button");
-    const clearEl = document.getElementById("clear-history");
-    const nameEl = document.getElementById("city-name");
-    const currentPicEl = document.getElementById("current-pic");
-    const currentTempEl = document.getElementById("temperature");
-    const currentHumidityEl = document.getElementById("humidity");
-    const currentWindEl = document.getElementById("wind-speed");
-    const currentUVEl = document.getElementById("UV-index");
-    const historyEl = document.getElementById("history");
+    let cityEl = document.getElementById("enter-city");
+    let searchEl = document.getElementById("search-button");
+    let clearEl = document.getElementById("clear-history");
+    let nameEl = document.getElementById("city-name");
+    let currentPicEl = document.getElementById("current-pic");
+    let currentTempEl = document.getElementById("temperature");
+    let currentHumidityEl = document.getElementById("humidity");
+    let currentWindEl = document.getElementById("wind-speed");
+    let currentUVEl = document.getElementById("UV-index");
+    let historyEl = document.getElementById("history");
     var fivedayEl = document.getElementById("fiveday-header");
     var todayweatherEl = document.getElementById("today-weather");
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
@@ -18,17 +18,17 @@ function initPage() {
 
     function getWeather(cityName) {
         // Execute a current weather get request from open weather api
-        let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
+        const queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
         axios.get(queryURL)
             .then(function (response) {
 
                 todayweatherEl.classList.remove("d-none");
 
                 // Parse response to display current weather
-                const currentDate = new Date(response.data.dt * 1000);
-                const day = currentDate.getDate();
-                const month = currentDate.getMonth() + 1;
-                const year = currentDate.getFullYear();
+                let currentDate = new Date(response.data.dt * 1000);
+                let day = currentDate.getDate();
+                let month = currentDate.getMonth() + 1;
+                let year = currentDate.getFullYear();
                 nameEl.innerHTML = response.data.name + " (" + month + "/" + day + "/" + year + ") ";
                 let weatherPic = response.data.weather[0].icon;
                 currentPicEl.setAttribute("src", "https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
